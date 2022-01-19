@@ -3,7 +3,25 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean name="student" class="com.test.beam.Student" scope="prototype" depends-on="card"/>
+    <bean name="student" class="com.test.beam.Student" scope="prototype" >
+        <property name="name" value="xiaoming"/>
+        <property name="age" value="18"/>
+        <property name="card" ref="card"/>
+<!--        <constructor-arg index="0" value="Tom"/>-->
+        <property name="list">
+            <list>
+                <value>Ema</value>
+                <value>Joe</value>
+                <value>Tom</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="math" value="100"/>
+                <entry key="English" value="90"/>
+            </map>
+        </property>
+    </bean>
     <bean name="card" class="com.test.beam.Card" scope="prototype"/>
 
 </beans>
