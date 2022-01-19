@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
     <bean name="student" class="com.test.beam.Student" scope="prototype" >
         <property name="name" value="xiaoming"/>
         <property name="age" value="18"/>
         <property name="card" ref="card"/>
-<!--        <constructor-arg index="0" value="Tom"/>-->
+        <constructor-arg index="0" value="Tom"/>
         <property name="list">
             <list>
                 <value>Ema</value>
@@ -23,7 +24,18 @@
         </property>
     </bean>
     <bean name="card" class="com.test.beam.Card" scope="prototype"/>
+    <bean name="test" class="com.test.aop.AopTest"/>
+    <aop:config>
+        <aop:aspect ref="test">
+            <aop:pointcut id="stu" expression="execution(* com.test.beam.Student.say())"/>
+            <aop:after-returning method="after" pointcut-ref="stu"/>
+        </aop:aspect>
 
+        <aop:aspect ref="test">
+            <aop:pointcut id="stu2" expression="@annotation(Deprecated)"/>
+            <aop:before method="before" pointcut-ref="stu2"/>
+        </aop:aspect>
+    </aop:config>
 </beans>
 
 
