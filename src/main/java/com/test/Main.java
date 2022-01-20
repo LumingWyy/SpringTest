@@ -8,7 +8,7 @@ public class Main {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("test.xml");
         Student student = (Student) context.getBean("student");
         student.say("aaaaaaaaaaaaaa");
-        student.test();
+        //student.test();
 
     }
 }

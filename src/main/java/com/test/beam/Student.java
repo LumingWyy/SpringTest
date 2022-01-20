@@ -20,7 +20,7 @@ public class Student {
 
 
     public  Student(String name) {
-        System.out.println("student constructor2"+ name);
+        System.out.println("student constructor2 "+ name);
     }
 
 
@@ -44,8 +44,9 @@ public class Student {
         this.map = map;
     }
 
-    public void say(String text) {
-        System.out.println("im"+name+ ".  i say "+text);
+    public String say(String text) {
+        System.out.println("im "+name+ ".  i say "+text);
+        return text;
     }
     @Deprecated
     public void test() {
